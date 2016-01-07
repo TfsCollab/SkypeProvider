@@ -1,0 +1,155 @@
+﻿<UserControl
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:Res="clr-namespace:TfsCommunity.Collaboration.Skype.Resources"
+			 xmlns:Helper="clr-namespace:TfsCommunity.Collaboration.Skype.Helpers" 
+			 xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+			 xmlns:Controls="clr-namespace:TfsCommunity.Collaboration.Skype.Controls"
+			 x:Class="TfsCommunity.Collaboration.Skype.Controls.ContactControl"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="36" d:DesignWidth="150">
+	<UserControl.Resources>
+		<Res:ResourcesPublic x:Key="Resources" />
+		<Helper:ImageConverter x:Key="ImageConverter" />
+		<Helper:StateToImageSourceConverter x:Key="StateToImageSourceConverter" />
+		<Helper:StateToColorConverter x:Key="StateToColorConverter" />
+		<Style x:Key="ButtonFocusVisual">
+			<Setter Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Rectangle Margin="1" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+			<GradientStop Color="#F3F3F3" Offset="0"/>
+			<GradientStop Color="#EBEBEB" Offset="0.5"/>
+			<GradientStop Color="#DDDDDD" Offset="0.5"/>
+			<GradientStop Color="#CDCDCD" Offset="1"/>
+		</LinearGradientBrush>
+		<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+		<Style TargetType="{x:Type Controls:ImageButton}">
+			<Setter Property="FocusVisualStyle">
+				<Setter.Value>
+					<Style>
+						<Setter Property="Control.Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<Rectangle Margin="1" SnapsToDevicePixels="True" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#FFF3F3F3" Offset="0"/>
+						<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+						<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+						<GradientStop Color="#FFCDCDCD" Offset="1"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="BorderBrush" Value="#FF707070"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+			<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Controls:ImageButton}">
+						<Microsoft_Windows_Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding IsDefaulted}" SnapsToDevicePixels="True">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="MouseOver"/>
+									<VisualState x:Name="Pressed"/>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image1">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Grid Margin="0" Width="Auto" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="15px" />
+									<!--<ColumnDefinition Width="Auto"/>-->
+								</Grid.ColumnDefinitions>
+								<Image x:Name="image" Grid.Column="0" Stretch="Uniform"  HorizontalAlignment="Center" VerticalAlignment="Center" Source="{TemplateBinding ImageSource}" />
+								<Image x:Name="image1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Source="{TemplateBinding DisabledImageSource}" Visibility="Collapsed" Height="Auto"/>
+								<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Grid.Column="0"/>
+							</Grid>
+						</Microsoft_Windows_Themes:ButtonChrome>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsKeyboardFocused" Value="True">
+								<Setter Property="RenderDefaulted" TargetName="Chrome" Value="True"/>
+							</Trigger>
+							<Trigger Property="ToggleButton.IsChecked" Value="True">
+								<Setter Property="RenderPressed" TargetName="Chrome" Value="True"/>
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Foreground" Value="#FFADADAD"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+	<Grid Height="36" Width="150">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="15px" />
+			<ColumnDefinition Width="35px" />
+			<ColumnDefinition Width="100px" />
+		</Grid.ColumnDefinitions>
+
+		<!--<Image x:Name="imgAvatar" Stretch="Uniform" Source="{Binding NoPicture, Converter={StaticResource ImageConverter}, Source={StaticResource Resources}}" Margin="1,1,1,1" />-->
+		<Image x:Name="imgAvatar" Grid.Row="0" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" Source="{Binding AvatarSource}" MouseEnter="ImgAvatar_OnMouseEnter" MouseLeave="ImgAvatar_OnMouseLeave">
+		</Image>
+
+		<Popup x:Name="PopupSkypeActions" Placement="Relative"  PopupAnimation="Fade" PlacementTarget="{Binding ElementName=imgAvatar}" VerticalOffset="-30" HorizontalOffset="0" AllowsTransparency="True" MouseEnter="PopupSkypeActions_MouseEnter" MouseLeave="ImgAvatar_OnMouseLeave">
+			<Border Padding="3" Margin="0" BorderBrush="LightGray" Background="LightGray" BorderThickness="1" CornerRadius="10" >
+				<StackPanel Orientation="Horizontal">
+						<Controls:ImageButton  x:Name="chatImageButton" Content=""
+								ImageSource="{Binding StartChat, Converter={StaticResource ImageConverter}, Source={StaticResource Resources}}"
+								DisabledImageSource="{Binding NAChat, Converter={StaticResource ImageConverter}, Source={StaticResource Resources}}"
+								IsEnabled="{Binding IsMessagingAvailable}" ToolTip="{Binding ChatButtonTooltip, Source={StaticResource Resources}}"
+								Margin="2,2,2,0" MaxHeight="19" Click="chatImageButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+						<Controls:ImageButton x:Name="audioImageButton" Content=""
+								ImageSource="{Binding StartAudio, Converter={StaticResource ImageConverter}, Source={StaticResource Resources}}"
+								DisabledImageSource="{Binding NAAudio, Converter={StaticResource ImageConverter}, Source={StaticResource Resources}}"
+								IsEnabled="{Binding IsAudioAvailable}" ToolTip="{Binding CallButtonTooltip, Source={StaticResource Resources}}"
+								Margin="2,2,2,0" MaxHeight="19" Click="audioImageButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+						<Controls:ImageButton x:Name="videoImageButton" Content=""
+								ImageSource="{Binding StartVideo, Converter={StaticResource ImageConverter}, Source={StaticResource Resources}}"
+								DisabledImageSource="{Binding NAVideo, Converter={StaticResource ImageConverter}, Source={StaticResource Resources}}"
+								IsEnabled="{Binding IsVideoAvailable}" ToolTip="{Binding VideoButtonTooltip, Source={StaticResource Resources}}"
+								Margin="2,2,2,0" MaxHeight="19" Click="videoImageButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+					</StackPanel>
+				</Border>
+		</Popup>
+
+		<StackPanel Grid.Row="0" Grid.Column="2" Height="36px">
+			<TextBlock Grid.Row="0" x:Name="lblName" VerticalAlignment="Top" Text="{Binding DisplayName, FallbackValue=UserName}" Grid.Column="0" Height="16px" Margin="2,0,0,0"/>
+			<TextBlock Grid.Row="0" x:Name="lblStatus" VerticalAlignment="Top" Text="{Binding Status, FallbackValue=Status}" Grid.Column="0" Height="16px" Margin="2,0,0,0"/>
+		</StackPanel>
+		<Canvas Height="34" Width="10" Background="{Binding Status, Converter={StaticResource StateToColorConverter},FallbackValue=Gray}" ToolTip="{Binding Path=Status}" Margin="0,1,0,1"/>
+	</Grid>
+</UserControl>

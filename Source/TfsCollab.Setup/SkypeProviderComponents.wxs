@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <ComponentGroup Id="CG.TfsCollaborationProviders" Directory="TEAMCOLLABORATION_PROVIDERS">
+      <ComponentRef Id="SkypeProviderAssembly" />
+      <ComponentRef Id="Skype4ComAssembly" />
+      <ComponentRef Id="Skype4ComInteropAssembly" />
+      <ComponentRef Id="Skype4ComRegistryFile" />
+    </ComponentGroup>
+
+    <DirectoryRef Id="TEAMCOLLABORATION_PROVIDERS">
+      <Component Id="SkypeProviderAssembly" Guid="41786491-AD13-457F-824B-FF82141F6C42" >
+        <File Id="SkypeProviderDll" Source='$(var.TfsCollab.SkypeProvider.TargetDir)SkypeProvider.dll' KeyPath='yes' Checksum='yes' Vital='yes' />
+      </Component>
+      <Component Id="Skype4ComInteropAssembly" Guid="323CBD93-9122-4E97-B338-D5E85692550D">
+        <File Id="Skype4ComInteropDll" Source='$(var.TfsCollab.SkypeProvider.ProjectDir)..\..\Libs\SKYPE4COMLib.dll' KeyPath='yes' Checksum='yes' Vital='yes' />
+      </Component>
+      <Component Id="Skype4ComAssembly" Guid="40D8CF4B-0AD8-4C2B-95F7-7268631D51CD" >
+        <File Id="Skype4ComDll" Source='$(var.TfsCollab.SkypeProvider.ProjectDir)..\..\Libs\Skype4COM\Skype4COM.dll' KeyPath='yes' Checksum='yes' Vital='yes'>
+          <TypeLib Id="{03282B5D-B38F-469D-849A-09B0A7F4881B}" Description="Skype4COM 1.0 Type Library." HelpDirectory="TEAMCOLLABORATION_PROVIDERS" Language="0" MajorVersion="1" MinorVersion="0">
+            <Class Id="{10DD084E-A5AE-456F-A3BE-DA67EBE6B090}" Context="InprocServer32" Description="ChatMessageCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.ChatMessageCollection.1" Description="ChatMessageCollection Class">
+                <ProgId Id="Skype4COM.ChatMessageCollection" Description="ChatMessageCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{15B6FEE5-5FB3-4071-AC1F-7AEDC0E2A6BB}" Context="InprocServer32" Description="ChatCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.ChatCollection.1" Description="ChatCollection Class">
+                <ProgId Id="Skype4COM.ChatCollection" Description="ChatCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{1BCA4635-F1FC-44C8-B829-48229AEB32E3}" Context="InprocServer32" Description="SmsMessageCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.SmsMessageCollection.1" Description="SmsMessageCollection Class">
+                <ProgId Id="Skype4COM.SmsMessageCollection" Description="SmsMessageCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{222C0F35-3D78-4570-9F6D-BAEE289D0304}" Context="InprocServer32" Description="Group Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Group.1" Description="Group Class">
+                <ProgId Id="Skype4COM.Group" Description="Group Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{29DCD339-D184-469B-8BFB-199A2CCF014E}" Context="InprocServer32" Description="Application Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Application.1" Description="Application Class">
+                <ProgId Id="Skype4COM.Application" Description="Application Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{2DBCDA9F-1248-400B-A382-A56D71BF7B15}" Context="InprocServer32" Description="Command Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Command.1" Description="Command Class">
+                <ProgId Id="Skype4COM.Command" Description="Command Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{2EEAB6D0-491E-4962-BBA1-FF1CCA6D4DD0}" Context="InprocServer32" Description="Conversion Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Conversion.1" Description="Conversion Class">
+                <ProgId Id="Skype4COM.Conversion" Description="Conversion Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{3506CDB7-8BC6-40C0-B108-CEA0B9480130}" Context="InprocServer32" Description="ConferenceCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.ConferenceCollection.1" Description="ConferenceCollection Class">
+                <ProgId Id="Skype4COM.ConferenceCollection" Description="ConferenceCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{3D3E7C1B-79A7-4CC7-8925-41FA813E9913}" Context="InprocServer32" Description="CallChannelMessage Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.CallChannelMessage.1" Description="CallChannelMessage Class">
+                <ProgId Id="Skype4COM.CallChannelMessage" Description="CallChannelMessage Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{3E01D8E0-A72B-4C9F-99BD-8A6E7B97A48D}" Context="InprocServer32" Description="User Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.User.1" Description="User Class">
+                <ProgId Id="Skype4COM.User" Description="User Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{42FE718B-A148-41D6-885B-01A0AFAE8723}" Context="InprocServer32" Description="CallChannelCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.CallChannelCollection.1" Description="CallChannelCollection Class">
+                <ProgId Id="Skype4COM.CallChannelCollection" Description="CallChannelCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{452CCB69-6A95-4370-9E5A-B3EFB06A7651}" Context="InprocServer32" Description="Profile Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Profile.1" Description="Profile Class">
+                <ProgId Id="Skype4COM.Profile" Description="Profile Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{4B42750B-57A1-47E7-B340-8EAE0E3126A4}" Context="InprocServer32" Description="ApplicationStreamCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.ApplicationStreamCollection.1" Description="ApplicationStreamCollection Class">
+                <ProgId Id="Skype4COM.ApplicationStreamCollection" Description="ApplicationStreamCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{52071016-E648-4D3B-B57E-2B46CC993CE0}" Context="InprocServer32" Description="Participant Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Participant.1" Description="Participant Class">
+                <ProgId Id="Skype4COM.Participant" Description="Participant Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{5792FC7D-5E1D-4F1A-BD4F-A7A50F92BC6E}" Context="InprocServer32" Description="SmsChunk Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.SmsChunk.1" Description="SmsChunk Class">
+                <ProgId Id="Skype4COM.SmsChunk" Description="SmsChunk Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{5E541E71-A474-4EAD-8FCB-24D400D023B7}" Context="InprocServer32" Description="CallChannelManager Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.CallChannelManager.1" Description="CallChannelManager Class">
+                <ProgId Id="Skype4COM.CallChannelManager" Description="CallChannelManager Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{61F8FAF0-82D0-407C-AE97-31441483AE40}" Context="InprocServer32" Description="SmsTarget Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.SmsTarget.1" Description="SmsTarget Class">
+                <ProgId Id="Skype4COM.SmsTarget" Description="SmsTarget Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{6AC51E9C-7947-4B46-A978-0AD601C4EFC9}" Context="InprocServer32" Description="SmsTargetCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.SmsTargetCollection.1" Description="SmsTargetCollection Class">
+                <ProgId Id="Skype4COM.SmsTargetCollection" Description="SmsTargetCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{6FA10A39-4760-4C94-A210-2398848618EC}" Context="InprocServer32" Description="ApplicationStream Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.ApplicationStream.1" Description="ApplicationStream Class">
+                <ProgId Id="Skype4COM.ApplicationStream" Description="ApplicationStream Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{7ACDC5B4-76A1-4BDF-918D-6962FCABBAD3}" Context="InprocServer32" Description="Chat Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Chat.1" Description="Chat Class">
+                <ProgId Id="Skype4COM.Chat" Description="Chat Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{7B030003-037D-490D-9169-A4F391B3D831}" Context="InprocServer32" Description="UserCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.UserCollection.1" Description="UserCollection Class">
+                <ProgId Id="Skype4COM.UserCollection" Description="UserCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{830690FC-BF2F-47A6-AC2D-330BCB402664}" Context="InprocServer32" Description="Skype Class" ThreadingModel="apartment" Version="1.0" Insertable="yes" Programmable="yes" Control="yes">
+              <ProgId Id="Skype4COM.Skype.1" Description="Skype Class">
+                <ProgId Id="Skype4COM.Skype" Description="Skype Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{89DD2F9D-C325-48BF-A615-96BD039BBC83}" Context="InprocServer32" Description="CallChannel Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.CallChannel.1" Description="CallChannel Class">
+                <ProgId Id="Skype4COM.CallChannel" Description="CallChannel Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{9017071A-2E34-4C3A-9BBB-688CBB5A9FF2}" Context="InprocServer32" Description="ChatMessage Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.ChatMessage.1" Description="ChatMessage Class">
+                <ProgId Id="Skype4COM.ChatMessage" Description="ChatMessage Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{9D073235-D787-497D-8D1F-929559F1C621}" Context="InprocServer32" Description="PluginEvent Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.PluginEvent.1" Description="PluginEvent Class">
+                <ProgId Id="Skype4COM.PluginEvent" Description="PluginEvent Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{A7DF2611-D752-4C9F-A90A-B56F18485EE9}" Context="InprocServer32" Description="VoicemailCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.VoicemailCollection.1" Description="VoicemailCollection Class">
+                <ProgId Id="Skype4COM.VoicemailCollection" Description="VoicemailCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{A8109DB9-88E0-42FE-98EA-8A12BE5394C6}" Context="InprocServer32" Description="GroupCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.GroupCollection.1" Description="GroupCollection Class">
+                <ProgId Id="Skype4COM.GroupCollection" Description="GroupCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{A983C9EC-D73E-4364-B89B-ACD1E405674F}" Context="InprocServer32" Description="Conference Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Conference.1" Description="Conference Class">
+                <ProgId Id="Skype4COM.Conference" Description="Conference Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{B09AC3FF-0D5D-41C6-A34E-7C3F58A3127C}" Context="InprocServer32" Description="Client Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Client.1" Description="Client Class">
+                <ProgId Id="Skype4COM.Client" Description="Client Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{B0FE88F0-C92F-46D6-878F-31599BEA944C}" Context="InprocServer32" Description="Settings Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Settings.1" Description="Settings Class">
+                <ProgId Id="Skype4COM.Settings" Description="Settings Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{CC461FC3-C9BE-41FB-8E47-E0115CBC01CC}" Context="InprocServer32" Description="SmsChunkCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.SmsChunkCollection.1" Description="SmsChunkCollection Class">
+                <ProgId Id="Skype4COM.SmsChunkCollection" Description="SmsChunkCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{D1C8C854-223A-4716-B670-C21918E8207E}" Context="InprocServer32" Description="PluginMenuItem Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.PluginMenuItem.1" Description="PluginMenuItem Class">
+                <ProgId Id="Skype4COM.PluginMenuItem" Description="PluginMenuItem Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{D26B1D42-9C42-4E7B-BB73-86384C4B4345}" Context="InprocServer32" Description="Call Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Call.1" Description="Call Class">
+                <ProgId Id="Skype4COM.Call" Description="Call Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{DD0E8ED5-1494-4B87-A35C-39F6ED4B1153}" Context="InprocServer32" Description="Voicemail Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.Voicemail.1" Description="Voicemail Class">
+                <ProgId Id="Skype4COM.Voicemail" Description="Voicemail Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{E1BC9147-C3E3-4E8A-8304-5E6B5C1C0774}" Context="InprocServer32" Description="ParticipantCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.ParticipantCollection.1" Description="ParticipantCollection Class">
+                <ProgId Id="Skype4COM.ParticipantCollection" Description="ParticipantCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{F278D870-7AF7-4957-96EE-E6AC72D0B109}" Context="InprocServer32" Description="SmsMessage Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.SmsMessage.1" Description="SmsMessage Class">
+                <ProgId Id="Skype4COM.SmsMessage" Description="SmsMessage Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{F3188CF3-EF22-4C5B-92CB-605964761C3B}" Context="InprocServer32" Description="CallCollection Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.CallCollection.1" Description="CallCollection Class">
+                <ProgId Id="Skype4COM.CallCollection" Description="CallCollection Class" />
+              </ProgId>
+            </Class>
+            <Class Id="{FFC8B962-9B40-4DFF-9458-1830C7DD7F5D}" Context="InprocServer32" Description="IEProtocolHandler Class" ThreadingModel="apartment" Programmable="yes">
+              <ProgId Id="Skype4COM.IEProtocolHandler.1" Description="IEProtocolHandler Class">
+                <ProgId Id="Skype4COM.IEProtocolHandler" Description="IEProtocolHandler Class" />
+              </ProgId>
+            </Class>
+            <Interface Id="{052A4165-010A-457D-A874-E661B6322846}" Name="IChatCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{0EF6FD5D-607D-4EA3-9C90-683D73449E9D}" Name="ICallChannelMessage" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{120B425E-6313-4924-B5A9-3E9F2E444A00}" Name="IVoicemail" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{1D5BAB2E-69CC-4136-8E02-FC20767DC9E2}" Name="ISmsMessageCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{21494848-BBD5-4192-BE32-57D1A19D8E94}" Name="IVoicemailCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{2B929860-6AF4-40DF-9D77-308CA7C23E66}" Name="ISkypeFileTransfer" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{2BC8C53B-3312-4A77-AC87-31DF18A1EC51}" Name="ISettings" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{30678F8A-C104-40C0-A6AE-7C150E83300E}" Name="ISkypeConference" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{30C27C77-525F-4A3F-B9DD-C5A77C67250D}" Name="ICallChannelManager" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{3F6758D2-1D3C-4A8F-BD99-6FC6B0E2DC8F}" Name="ISkypeChat" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{48E046A8-31D7-4E5F-A611-47BF32B86405}" Name="ICommand" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{497ABB45-20AE-49D1-A39D-CBE84A31B20C}" Name="_ICallChannelManagerEvents" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+            <Interface Id="{4C5C99DC-09CF-4A9C-BD94-8D655454A1F4}" Name="IGroupCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{4CFF5C70-3C95-4566-824A-FA164586D535}" Name="IChatMessage" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{4D33E14E-9921-4860-92F4-5DC1586F403C}" Name="ISkypeVoicemail" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{4D36B368-B88C-45FA-B136-3EF77B2EAD39}" Name="IFileTransfer" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{4DF5F83A-0ABA-417D-A6FC-62A68AE06EF7}" Name="IPluginEvent" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{54590FC3-0405-4A2D-B4A5-BEAC026577F2}" Name="ISkypeCall" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{55A5200C-B2E8-4795-A6FA-858CA3FE2F26}" Name="ISkypeApplication" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{6CF6DBDE-AB7C-4635-96ED-2FF525AB4457}" Name="ISkypeChatMember" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{6D0B4547-771D-4C4F-B3E8-98A33FD24D2B}" Name="ISkypeSms" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{70A59A25-E823-4C3F-8F33-775008895EE3}" Name="IFileTransferCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{72E1EC13-0DF9-48AE-8A31-E2900D85BA55}" Name="ICallCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{76036886-436C-405F-A96E-7835CCFB82F3}" Name="ICall" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{82D97F2A-0E17-40F3-8E01-24937F936FF4}" Name="ISmsMessage" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{838731B0-88E7-4BED-81DC-B35CA8433341}" Name="IClient" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{84513274-9C49-4AAA-B8FC-316EB32CFE95}" Name="IGroup" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{8C24106C-3368-4580-93E5-5ED4ACCDE306}" Name="IChat" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{8CB09087-E389-4C6D-A6A2-7D4BCA8545D9}" Name="ICallChannelCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{8D82F88A-B307-4074-8ED5-11C3BD213452}" Name="IConversion" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{8FFC686B-2E5E-4763-8B03-FF4FD3A0C4DA}" Name="IChatMemberCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{9511117A-7BCA-4669-BE96-6EA6866975C1}" Name="IChatMessageCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{9E9F0473-94C2-4FDD-85D2-43E3478765F9}" Name="IChatMember" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{A2365EF3-4805-4DD3-A9D4-1A8AE3E17D84}" Name="ISmsTargetCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{A569B841-CC8A-4C12-B937-CBC17D9E64F0}" Name="ISkypeChatMessage" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{A9062508-C926-4415-ABB7-A5A46DB34456}" Name="ISmsChunk" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{A9B9C33A-49A6-41D5-B13F-2AA4F284F406}" Name="ISmsTarget" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{AEB48497-5090-479C-8BE0-BD51597156A1}" Name="IConference" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{B1878BFE-53D3-402E-8C86-190B19AF70D5}" Name="ISkype" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{B76C04C9-0EB1-4748-B0C0-D01DEB595906}" Name="ICallChannel" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{B77A3D1F-6847-402F-BB82-A0564379088E}" Name="ISkypePlugin" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{B9A3D72F-04C1-4878-993C-D89F83E20569}" Name="IProfile" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{BBDA7D2D-B1C2-4AF9-AB5B-D762341D8903}" Name="ISmsChunkCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{C219279C-F557-4BAD-B3BE-750E91CA9944}" Name="ISkypeUser" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{C4BDF667-3FF7-4B44-A9F4-F3937E3E6D86}" Name="IPluginMenuItem" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{D0BC5168-A518-4192-9D20-0B907B23C4D1}" Name="IUser" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{D8F1BCC4-2A73-47B9-83B3-D4D299CA5BC6}" Name="IApplicationStreamCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{E072F615-F833-4BCA-B473-CEE44D302030}" Name="IApplicationStream" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{EC163200-44EB-483B-907F-A8C1CF56B8EE}" Name="IUserCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{F1B2AD09-1961-4336-A6BF-93010B73DE72}" Name="IParticipant" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{F3E0C529-7D4F-4AF5-B501-27D25D4D2825}" Name="IConferenceCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{F4F90CDD-C620-4118-945E-CAA1BBEBA435}" Name="_ISkypeEvents" ProxyStubClassId32="{00020420-0000-0000-C000-000000000046}" />
+            <Interface Id="{F825FE12-9826-4BD2-BF7E-1ED95B8480FE}" Name="IParticipantCollection" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+            <Interface Id="{F9ADA565-2FAD-424D-878C-7AD12DF9E617}" Name="IApplication" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
+          </TypeLib>
+        </File>
+        <RegistryValue Root="HKCR" Key="CLSID\{830690FC-BF2F-47A6-AC2D-330BCB402664}\MiscStatus\1" Value="132497" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{830690FC-BF2F-47A6-AC2D-330BCB402664}\MiscStatus" Value="0" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{830690FC-BF2F-47A6-AC2D-330BCB402664}\ToolboxBitmap32" Value="[#Skype4ComDll], 207" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="PROTOCOLS\Handler\skype4com" Value="Skype4COM Pluggable Protocol" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="PROTOCOLS\Handler\skype4com" Name="CLSID" Value="{FFC8B962-9B40-4DFF-9458-1830C7DD7F5D}" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Skype4COM.Skype.1" Name="Compatibility Flags" Value="400" Type="integer" Action="write" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Internet Explorer\ActiveX Compatibility\{830690FC-BF2F-47A6-AC2D-330BCB402664}" Name="Compatibility Flags" Value="1024" Type="integer" Action="write" />
+      </Component>
+      <Component Id="Skype4ComRegistryFile" Guid="21F258CC-878A-49FB-BEC2-DDFD76DDAB94">
+        <File Id="Skype4ComReg" Source='$(var.TfsCollab.SkypeProvider.ProjectDir)..\..\Libs\Skype4COM\skype4comcleanup.reg' KeyPath='yes' Checksum='yes' Vital='yes' />
+      </Component>
+    </DirectoryRef>
+	</Fragment>
+</Wix>

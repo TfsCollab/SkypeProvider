@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{245FF5A0-3324-4E41-B9B1-3C13C3A4F81B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TfsCommunity.Collaboration.Skype</RootNamespace>
+    <AssemblyName>SkypeProvider</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName />
+    <SccLocalPath />
+    <SccAuxPath />
+    <SccProvider />
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.TeamFoundation.Collaboration, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Microsoft.TeamFoundation.Collaboration.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SKYPE4COMLib">
+      <HintPath>..\..\Libs\SKYPE4COMLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DummyProvider.cs" />
+    <Compile Include="Interfaces\IContactControl.cs" />
+    <Compile Include="Controls\ImageButton.cs" />
+    <Compile Include="Helpers\StateToColorConverter.cs" />
+    <Compile Include="Helpers\FileManagement.cs" />
+    <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\SkypeNameResolver.cs" />
+    <Compile Include="Helpers\StateToImageSourceConverter.cs" />
+    <Compile Include="Helpers\ImageConverter.cs" />
+    <Compile Include="Helpers\StatusConverter.cs" />
+    <Compile Include="Interfaces\ICollaborationUIProviderExtended.cs" />
+    <Compile Include="Legacy\UserMapping.cs" />
+    <Compile Include="Legacy\UserMappingCollection.cs" />
+    <Compile Include="Mapping\UserMapping.cs" />
+    <Compile Include="Mapping\UserMappingCollection.cs" />
+    <Compile Include="Models\SkypeContact.cs" />
+    <Compile Include="Interfaces\IContact.cs" />
+    <Compile Include="Resources\ResourcesPublic.cs" />
+    <Compile Include="SkypeProvider.cs" />
+    <Compile Include="Controls\ContactControl.xaml.cs">
+      <DependentUpon>ContactControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Enum\UserStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\ContactControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PresenceAway_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PresenceBlocked_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PresenceDoNotDisturb_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PresenceInvisible_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PresenceOffline_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PresenceOnline_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\call_audio_start_GreenStart_512x512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Message_start_GreenStart_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Call_video_start_GreenStart_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Call_video_start_GreyOff_down_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Message_start_GreyOff_down_512x512_s1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\call_audio_start_GreyOff_down_512x512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contact_Alpha_down_512x512_s1.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
