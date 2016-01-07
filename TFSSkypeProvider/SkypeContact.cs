@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using Microsoft.TeamFoundation.Collaboration;
+﻿using Microsoft.TeamFoundation.Collaboration;
 using SKYPE4COMLib;
 
 namespace TfsCommunity.Collaboration.Skype
@@ -12,16 +10,16 @@ namespace TfsCommunity.Collaboration.Skype
     {
         #region Overrides of Contact
 
-        private readonly string contactID;
-        private readonly string friendlyName;
-        private bool isBlocked;
-        private readonly bool isSelf;
-        private readonly PhoneNumberCollection phoneNumberCollection;
-        private string statusDetail;
-        private bool isTagged;
-        private PresenceStatus presenceStatus;
-        private ISkype skypeInstance;
-        private IUser skypeUser;
+        private readonly string _contactId;
+        private readonly string _friendlyName;
+        private bool _isBlocked;
+        private readonly bool _isSelf;
+        private readonly PhoneNumberCollection _phoneNumberCollection;
+        private string _statusDetail;
+        private bool _isTagged;
+        private PresenceStatus _presenceStatus;
+        private readonly ISkype _skypeInstance;
+        private readonly IUser _skypeUser;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SkypeContact"/> class.
@@ -31,37 +29,38 @@ namespace TfsCommunity.Collaboration.Skype
         /// <param name="mapping">The user mapping for this contact</param>
         public SkypeContact(IUser skypeContact, ISkype skypeInstance, UserMapping mapping)
         {
-            this.skypeInstance = skypeInstance;
-            this.skypeUser = skypeContact;
+            if (skypeInstance != null) _skypeInstance = skypeInstance;
+            _skypeUser = skypeContact;
             // Do not access skype if it is not running
             if ((!IsSkypeRunning()) || (skypeContact == null))
             {
-                contactID = mapping.SkypeName;
-                friendlyName = mapping.SkypeName;
-                presenceStatus = PresenceStatus.Offline;
-                statusDetail = string.Empty;
-                isBlocked = false;
-                isTagged = false;
+                _contactId = mapping.SkypeName;
+                _friendlyName = mapping.SkypeName;
+                _presenceStatus = PresenceStatus.Offline;
+                _statusDetail = string.Empty;
+                _isBlocked = false;
+                _isTagged = false;
             }
             else if ((mapping != null) && (!mapping.IsIgnored))
             {
-                contactID = skypeContact.Handle;
-                friendlyName = skypeContact.FullName;
-                presenceStatus = skypeContact.OnlineStatus.OnlineStatusToPresenceStatus();
-                statusDetail = skypeContact.MoodText;
-                isBlocked = skypeContact.IsBlocked;
-                isTagged = false;
-                if (skypeContact.Handle == skypeInstance.CurrentUser.Handle)
-                {
-                    isSelf = true;
-                }
-                phoneNumberCollection = new SkypePhoneCollection(skypeContact);
+                _contactId = skypeContact.Handle;
+                _friendlyName = skypeContact.FullName;
+                _presenceStatus = skypeContact.OnlineStatus.OnlineStatusToPresenceStatus();
+                _statusDetail = skypeContact.MoodText;
+                _isBlocked = skypeContact.IsBlocked;
+                _isTagged = false;
+                if (skypeInstance != null)
+                    if (skypeContact.Handle == skypeInstance.CurrentUser.Handle)
+                    {
+                        _isSelf = true;
+                    }
+                _phoneNumberCollection = new SkypePhoneCollection(skypeContact);
             }
             else if (mapping != null)
             {
-                friendlyName = mapping.SkypeName;
-                contactID = mapping.TFsName;
-                statusDetail = Properties.Resources.UserNotMapped;
+                _friendlyName = mapping.SkypeName;
+                _contactId = mapping.TfsName;
+                _statusDetail = Properties.Resources.UserNotMapped;
             }
         }
 
@@ -73,7 +72,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The contact id.</value>
         public override string ContactId
         {
-            get { return contactID; }
+            get { return _contactId; }
         }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value><c>true</c> if this instance represents the current user; otherwise, <c>false</c>.</value>
         public override bool IsSelf
         {
-            get { return isSelf; }
+            get { return _isSelf; }
         }
 
         /// <summary>
@@ -91,7 +90,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The friendly name.</value>
         public override string FriendlyName
         {
-            get { return friendlyName; }
+            get { return _friendlyName; }
         }
 
         /// <summary>
@@ -100,7 +99,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The phone numbers.</value>
         public override PhoneNumberCollection PhoneNumbers
         {
-            get { return phoneNumberCollection; }
+            get { return _phoneNumberCollection; }
         }
 
         /// <summary>
@@ -111,7 +110,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// </value>
         public override bool IsBlocked
         {
-            get { return isBlocked; }
+            get { return _isBlocked; }
         }
 
         /// <summary>
@@ -120,7 +119,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The status.</value>
         public override PresenceStatus Status
         {
-            get { return presenceStatus; }
+            get { return _presenceStatus; }
         }
 
         /// <summary>
@@ -129,7 +128,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The status detail.</value>
         public override string StatusDetail
         {
-            get { return statusDetail; }
+            get { return _statusDetail; }
         }
 
         /// <summary>
@@ -140,18 +139,18 @@ namespace TfsCommunity.Collaboration.Skype
         {
             get
             {
-                return isTagged;
+                return _isTagged;
             }
             set
             {
-                isTagged = value;
+                _isTagged = value;
             }
 
         }
 
         private bool IsSkypeRunning()
         {
-            return ((skypeInstance != null) && (skypeInstance.Client.IsRunning));
+            return ((_skypeInstance != null) && (_skypeInstance.Client.IsRunning));
         }
 
 
@@ -161,9 +160,9 @@ namespace TfsCommunity.Collaboration.Skype
         /// <param name="e">The <see cref="Microsoft.TeamFoundation.Collaboration.PresenceChangedEventArgs"/> instance containing the event data.</param>
         public override void UpdateStatus(PresenceChangedEventArgs e)
         {
-            presenceStatus = e.Status;
-            statusDetail = skypeUser.MoodText;
-            isBlocked = e.IsBlocked;
+            _presenceStatus = e.Status;
+            _statusDetail = _skypeUser.MoodText;
+            _isBlocked = e.IsBlocked;
         }
 
         #endregion

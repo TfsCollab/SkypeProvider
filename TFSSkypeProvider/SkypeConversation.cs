@@ -14,32 +14,32 @@ namespace TfsCommunity.Collaboration.Skype
         /// <filterpriority>2</filterpriority>
         public void Dispose()
         {
-            skypeChat = null;
-            skypeCall = null;
+            _skypeChat = null;
+            _skypeCall = null;
         }
 
         #endregion
 
-        private ICall skypeCall;
+        private ICall _skypeCall;
 
-        private IChat skypeChat;
+        private IChat _skypeChat;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SkypeConversation"/> class.
         /// </summary>
-        /// <param name="SkypeChat">The skype chat.</param>
-        public SkypeConversation(IChat SkypeChat)
+        /// <param name="skypeChat">The skype chat.</param>
+        public SkypeConversation(IChat skypeChat)
         {
-            skypeChat = SkypeChat;
+            _skypeChat = skypeChat;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SkypeConversation"/> class.
         /// </summary>
-        /// <param name="SkypeCall">The skype call.</param>
-        public SkypeConversation(ICall SkypeCall)
+        /// <param name="skypeCall">The skype call.</param>
+        public SkypeConversation(ICall skypeCall)
         {
-            skypeCall = SkypeCall;
+            _skypeCall = skypeCall;
         }
 
         #region Implementation of IConversation
@@ -49,13 +49,13 @@ namespace TfsCommunity.Collaboration.Skype
         /// </summary>
         public void Close()
         {
-            if (skypeChat != null)
+            if (_skypeChat != null)
             {
-                skypeChat.Leave();
+                _skypeChat.Leave();
             }
-            if (skypeCall != null)
+            if (_skypeCall != null)
             {
-                skypeCall.Finish();
+                _skypeCall.Finish();
             }
         }
 
@@ -65,15 +65,15 @@ namespace TfsCommunity.Collaboration.Skype
         /// <param name="message">The message.</param>
         public void SendText(string message)
         {
-            if (skypeChat != null)
+            if (_skypeChat != null)
             {
-                skypeChat.SendMessage(message);
+                _skypeChat.SendMessage(message);
             }
-            if (skypeCall != null)
+            if (_skypeCall != null)
             {
                 // Send the message to all participants of the call
-                UserCollection users = new UserCollection();
-                foreach (Participant participant in skypeCall.Participants)
+                var users = new UserCollection();
+                foreach (Participant participant in _skypeCall.Participants)
                 {
                     users.Add(Skype.get_User(participant.Handle));
                 }
@@ -90,13 +90,13 @@ namespace TfsCommunity.Collaboration.Skype
         {
             get
             {
-                if (skypeCall != null)
+                if (_skypeCall != null)
                 {
-                    return skypeCall.Subject;
+                    return _skypeCall.Subject;
                 }
-                if (skypeChat != null)
+                if (_skypeChat != null)
                 {
-                    return skypeChat.Topic;
+                    return _skypeChat.Topic;
                 }
                 return string.Empty;
             }
@@ -110,7 +110,7 @@ namespace TfsCommunity.Collaboration.Skype
         {
             get
             {
-                ChatMessageCollection chatMessageCollection = skypeChat.RecentMessages;
+                ChatMessageCollection chatMessageCollection = _skypeChat.RecentMessages;
                 String output = string.Empty;
                 foreach (ChatMessage chatMessage in chatMessageCollection)
                 {
@@ -129,8 +129,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The skype call.</value>
         public ICall SkypeCall
         {
-            get { return skypeCall; }
-            
+            get { return _skypeCall; }
         }
 
         /// <summary>
@@ -139,7 +138,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The skype chat.</value>
         public IChat SkypeChat
         {
-            get { return skypeChat; }
+            get { return _skypeChat; }
         }
 
         /// <summary>

@@ -39,10 +39,11 @@ namespace TfsCommunity.Collaboration.Skype
                 using (Stream stream = File.OpenRead(MappingFilePath))
                 {
                     var userMappings = serializer.Deserialize(stream) as UserMappingCollection;
-                    foreach (UserMapping mapping in userMappings)
-                    {
-                        Add(mapping);
-                    }
+                    if (userMappings != null)
+                        foreach (UserMapping mapping in userMappings)
+                        {
+                            Add(mapping);
+                        }
                 }
             }
         }
@@ -52,7 +53,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// </summary>
         public void Save()
         {
-            if (!File.Exists(MappingFilePath))
+            if (MappingFilePath != null && !File.Exists(MappingFilePath))
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(MappingFilePath));
             }
@@ -60,6 +61,7 @@ namespace TfsCommunity.Collaboration.Skype
             using (Stream stream = File.OpenWrite(MappingFilePath))
             {
                 serializer.Serialize(stream, this);
+                Logger.Write(string.Format("Saved mapping file. Output path is {0}.", MappingFilePath));
             }
         }
 
@@ -76,7 +78,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// </param>
         protected override string GetKeyForItem(UserMapping item)
         {
-            return item.TFsName;
+            return item.TfsName;
         }
 
         #endregion
@@ -90,7 +92,7 @@ namespace TfsCommunity.Collaboration.Skype
         {
             foreach (UserMapping mapping in this)
             {
-                if (mapping.SkypeName.Equals(skypeName))
+                if (mapping.SkypeName.Equals(skypeName,StringComparison.OrdinalIgnoreCase))
                     return mapping;
             }
             return null;
@@ -103,13 +105,19 @@ namespace TfsCommunity.Collaboration.Skype
         /// <returns></returns>
         public UserMapping GetUserMapping(string contactId)
         {
-            var mapping = this.FindBySkypeName(contactId);
+            var mapping = FindBySkypeName(contactId);
             if (mapping == null)
             {
-                if (this.Contains(contactId) && (!this[contactId].IsIgnored))
+                if (Contains(contactId) && (!this[contactId].IsIgnored))
                     mapping = this[contactId];
             }
-            return mapping;
+
+            if (mapping != null)
+            {
+                Logger.Write(string.Format("Found a mapping for contactid {0} / tfs name {1}. Skype name is {2}.",contactId,mapping.TfsName, mapping.SkypeName));
+                return mapping;
+            }
+            return null;
         }
     }
 }

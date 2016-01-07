@@ -1,8 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSSkypeProvider", "TFSSkypeProvider\TFSSkypeProvider.csproj", "{6B8349A3-3138-40EF-AC78-3A41CE69E2A2}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABB891BB-56DF-4196-9746-6E20B8A1FD16}"
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
@@ -10,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.txt = Readme.txt
 		TFSSkypeProvider.vsmdi = TFSSkypeProvider.vsmdi
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSSkypeProvider", "TFSSkypeProvider\TFSSkypeProvider.csproj", "{6B8349A3-3138-40EF-AC78-3A41CE69E2A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSSkypeProviderTest", "TFSSkypeProviderTest\TFSSkypeProviderTest.csproj", "{A032824F-3A66-4910-9D06-EB58F709F4F2}"
 EndProject

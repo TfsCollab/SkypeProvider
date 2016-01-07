@@ -7,9 +7,9 @@ namespace TfsCommunity.Collaboration.Skype
 {
     public static class HelperClass
     {
-        public static PresenceStatus UserStatusToPresenseStatus(this TUserStatus SkypeStatus)
+        public static PresenceStatus UserStatusToPresenseStatus(this TUserStatus skypeStatus)
         {
-            switch (SkypeStatus)
+            switch (skypeStatus)
             {
                 case TUserStatus.cusOnline:
                     return PresenceStatus.Online;
@@ -32,9 +32,9 @@ namespace TfsCommunity.Collaboration.Skype
             }
         }
 
-        public static PresenceStatus OnlineStatusToPresenceStatus(this TOnlineStatus SkypeStatus)
+        public static PresenceStatus OnlineStatusToPresenceStatus(this TOnlineStatus skypeStatus)
         {
-            switch (SkypeStatus)
+            switch (skypeStatus)
             {
                 case TOnlineStatus.olsOnline:
                     return PresenceStatus.Online;
@@ -55,9 +55,9 @@ namespace TfsCommunity.Collaboration.Skype
             }
         }
 
-        public static TOnlineStatus PresenceStatusToOnlineStatus(this PresenceStatus PresenceStatus)
+        public static TOnlineStatus PresenceStatusToOnlineStatus(this PresenceStatus presenceStatus)
         {
-            switch (PresenceStatus)
+            switch (presenceStatus)
             {
                 case PresenceStatus.Online:
                     {

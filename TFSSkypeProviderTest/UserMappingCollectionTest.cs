@@ -24,10 +24,10 @@ namespace TFSSkypeProviderTest
         {
             var target = new UserMappingCollection();
             target.Clear();
-            target.Add(new UserMapping {SkypeName = "A", TFsName = "A", IsIgnored = false, IsUnassigned = false});
-            target.Add(new UserMapping {SkypeName = "B", TFsName = "B", IsIgnored = false, IsUnassigned = false});
-            target.Add(new UserMapping {SkypeName = "C", TFsName = "C", IsIgnored = false, IsUnassigned = false});
-            target.Add(new UserMapping {SkypeName = "D", TFsName = "D", IsIgnored = false, IsUnassigned = false});
+            target.Add(new UserMapping {SkypeName = "A", TfsName = "A", IsIgnored = false, IsUnassigned = false});
+            target.Add(new UserMapping {SkypeName = "B", TfsName = "B", IsIgnored = false, IsUnassigned = false});
+            target.Add(new UserMapping {SkypeName = "C", TfsName = "C", IsIgnored = false, IsUnassigned = false});
+            target.Add(new UserMapping {SkypeName = "D", TfsName = "D", IsIgnored = false, IsUnassigned = false});
             target.Save();
             target = new UserMappingCollection();
             target.Load();

@@ -55,7 +55,7 @@ namespace TfsCommunity.Collaboration.Skype
                 else
                 {
                     _presenter.Mappings.Add(new UserMapping
-                                                {TFsName = tfsUser, SkypeName = skypeUser.User.Handle, IsIgnored = true});
+                                                {TfsName = tfsUser, SkypeName = skypeUser.User.Handle, IsIgnored = true});
                 }
             }
             this.Close();
@@ -73,7 +73,7 @@ namespace TfsCommunity.Collaboration.Skype
                 }
                 else
                 {
-                    _presenter.Mappings.Add(new UserMapping {TFsName = tfsUser, SkypeName = skypeUser.User.Handle});
+                    _presenter.Mappings.Add(new UserMapping {TfsName = tfsUser, SkypeName = skypeUser.User.Handle});
                 }
             }
             this.Close();

@@ -19,29 +19,30 @@ namespace TfsCommunity.Collaboration.Skype
         [Obsolete]
         public SkypePresenceChangedEventArgs(string contactId, bool isBlocked, PresenceStatus status, string statusDetail)
         {
-            this.contactId = contactId;
-            this.isBlocked = isBlocked;
-            this.status = status;
-            this.statusDetail = statusDetail;
+            _contactId = contactId;
+            _isBlocked = isBlocked;
+            _status = status;
+            _statusDetail = statusDetail;
         }
 
-        public SkypePresenceChangedEventArgs(IUser skypeContact, TOnlineStatus onlineStatus, string tFSContactId)
+        public SkypePresenceChangedEventArgs(IUser skypeContact, TOnlineStatus onlineStatus, string tfsContactId)
         {
-            contactId = skypeContact.Handle;
-            isBlocked = skypeContact.IsBlocked;
-            status = onlineStatus.OnlineStatusToPresenceStatus();
-            statusDetail = skypeContact.MoodText;
+            _contactId = skypeContact.Handle;
+            _isBlocked = skypeContact.IsBlocked;
+            _status = onlineStatus.OnlineStatusToPresenceStatus();
+            _statusDetail = skypeContact.MoodText;
+            _contactId = tfsContactId;
         }
 
         #region Overrides of PresenceChangedEventArgs
 
-        private readonly string contactId;
+        private readonly string _contactId;
 
-        private readonly bool isBlocked;
+        private readonly bool _isBlocked;
 
-        private readonly PresenceStatus status;
+        private readonly PresenceStatus _status;
 
-        private readonly string statusDetail;
+        private readonly string _statusDetail;
 
         /// <summary>
         /// Gets the contact id.
@@ -49,7 +50,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The contact id.</value>
         public override string ContactId
         {
-            get { return contactId; }
+            get { return _contactId; }
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// </value>
         public override bool IsBlocked
         {
-            get { return isBlocked; }
+            get { return _isBlocked; }
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The status.</value>
         public override PresenceStatus Status
         {
-            get { return status; }
+            get { return _status; }
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The status detail.</value>
         public override string StatusDetail
         {
-            get { return statusDetail; }
+            get { return _statusDetail; }
         }
 
         #endregion

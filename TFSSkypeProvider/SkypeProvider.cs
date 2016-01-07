@@ -8,14 +8,14 @@ using SKYPE4COMLib;
 
 namespace TfsCommunity.Collaboration.Skype
 {
-    [CollaborationProvider("Skype Collaboration Provider powered by AIT TeamSystemPro")]
+    [CollaborationProvider("Skype Provider powered by AIT TeamSystemPro")]
     public class SkypeProvider : CollaborationProviderBase
     {
         #region Fields
 
         private readonly List<string> _requestedForCreation = new List<string>();
-        private UserMappingCollection mappings;
-        private ISkype skypeInstance;
+        private UserMappingCollection _mappings;
+        private ISkype _skypeInstance;
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace TfsCommunity.Collaboration.Skype
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            skypeInstance = null;
+            _skypeInstance = null;
         }
 
         #endregion
@@ -102,8 +102,9 @@ namespace TfsCommunity.Collaboration.Skype
                                     break;
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            Logger.WriteExceptionDetails("SignInStatus",ex);
                         }
                     }
                 }
@@ -290,18 +291,22 @@ namespace TfsCommunity.Collaboration.Skype
                 return null;
             // Note: If there is only one conatc we use a single chat,. otherwise we start a multi user chat
             if (contactIds.Count == 1)
+            {
+                Logger.Write(string.Format("Starting im conversation with contactid {0}.",contactIds[0]));
                 return StartInstantMessageConversation(contactIds[0]);
+            }
+
 
             var chatMembers = new UserCollection();
             chatMembers.AddFromContactIds(contactIds, UserMappings, MyContactId);
+            Logger.Write(string.Format("Starting im conversation with contactids {0}.", contactIds));
 
             // ChatWithMultiple is a little bit buggy
             // we first open a single chat and than adding the othters
-            IChat skypeChat;
             var mapping = UserMappings.GetUserMapping(contactIds[0]);
             if (mapping != null)
             {
-                skypeChat = SkypeInstance.CreateChatWith(mapping.SkypeName);
+                IChat skypeChat = SkypeInstance.CreateChatWith(mapping.SkypeName);
                 IConversation conversation = new SkypeConversation(skypeChat) { Skype = SkypeInstance };
                 skypeChat.AcceptAdd();
                 skypeChat.AddMembers(chatMembers);
@@ -358,7 +363,7 @@ namespace TfsCommunity.Collaboration.Skype
                     var mapping = UserMappings.GetUserMapping(contactIds[i]);
                     if (mapping != null)
                     {
-                        IUser skypeUser = SkypeInstance.get_User(mapping.SkypeName);
+                        IUser skypeUser = SkypeInstance.User[mapping.SkypeName];
                         participants[i] = skypeUser != null ? skypeUser.Handle : null;
                     }
                 }
@@ -381,7 +386,7 @@ namespace TfsCommunity.Collaboration.Skype
             var mapping = UserMappings.GetUserMapping(contactId);
             if (mapping != null)
             {
-                IUser skypeUser = SkypeInstance.get_User(mapping.SkypeName);
+                IUser skypeUser = SkypeInstance.User[mapping.SkypeName];
                 ICall skypeCall = SkypeInstance.PlaceCall(skypeUser.Handle, null, null, null);
                 IConversation conversation = new SkypeConversation(skypeCall) { Skype = SkypeInstance };
                 return conversation;
@@ -455,8 +460,9 @@ namespace TfsCommunity.Collaboration.Skype
             {
                 call.StartVideoSend();
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.WriteExceptionDetails("AsyncEnableVideo", ex);
             }
         }
 
@@ -490,28 +496,25 @@ namespace TfsCommunity.Collaboration.Skype
             get
             {
                 // Upon first access we ensure to create the COM instance
-                if (skypeInstance == null)
+                if (_skypeInstance == null)
                 {
-                    skypeInstance = new SkypeClass();
+                    _skypeInstance = new SkypeClass();
                     // Online Status is only available if we access skypeInstance as SkypeClass
-                    SkypeClass skypeClass = (SkypeClass)skypeInstance;
-                    if (skypeClass != null)
-                    {
-                        skypeClass.OnlineStatus += skypeClass_OnlineStatus;
-                    }
+                    var skypeClass = (SkypeClass)_skypeInstance;
+                    skypeClass.OnlineStatus += skypeClass_OnlineStatus;
                 }
-                return skypeInstance;
+                return _skypeInstance;
             }
         }
 
-        private void skypeClass_OnlineStatus(User pUser, TOnlineStatus Status)
+        private void skypeClass_OnlineStatus(User pUser, TOnlineStatus status)
         {
-            if (mappings[pUser.Handle] != null)
+            if (_mappings[pUser.Handle] != null)
             {
-                PresenceChangedEventArgs presenceChangedEventArgs = new SkypePresenceChangedEventArgs(pUser, Status,
-                                                                                                      mappings[
+                PresenceChangedEventArgs presenceChangedEventArgs = new SkypePresenceChangedEventArgs(pUser, status,
+                                                                                                      _mappings[
                                                                                                           pUser.Handle].
-                                                                                   TFsName);
+                                                                                   TfsName);
                 OnPresenceChanged(presenceChangedEventArgs);
             }
         }
@@ -525,12 +528,12 @@ namespace TfsCommunity.Collaboration.Skype
             get
             {
                 // Upon first access to the mappings we ensure to laod them
-                if (mappings == null)
+                if (_mappings == null)
                 {
-                    mappings = new UserMappingCollection();
-                    mappings.Load();
+                    _mappings = new UserMappingCollection();
+                    _mappings.Load();
                 }
-                return mappings;
+                return _mappings;
             }
         }
 
@@ -545,6 +548,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <returns>The contact that matches the specified <paramref name="contactId"/>.</returns>
         public override Contact GetContact(string contactId)
         {
+            Logger.Write(string.Format("GetContact was called with contactId {0}.",contactId));
             var mapping = UserMappings.GetUserMapping(contactId);
             if (mapping != null)
             {
@@ -553,7 +557,7 @@ namespace TfsCommunity.Collaboration.Skype
                 if (IsSkypeRunning())
                 {
                     // We return the contact even though it might be marked as ignored.
-                    user = SkypeInstance.get_User(mapping.SkypeName);
+                    user = SkypeInstance.User[mapping.SkypeName];
                 }
                 var skypeContact = new SkypeContact(user, SkypeInstance, mapping);
                 return skypeContact;
@@ -573,7 +577,10 @@ namespace TfsCommunity.Collaboration.Skype
             // If the user is already mapped do nothing but if it is not mapped or ignored handle it.
             var mapping = UserMappings.GetUserMapping(contactId);
             if (mapping == null)
+            {
                 _requestedForCreation.Add(contactId);
+                Logger.Write(string.Format("Added contactid {0} to request for creation list.",contactId));
+            }
 
         }
 
@@ -592,6 +599,7 @@ namespace TfsCommunity.Collaboration.Skype
             IList<User> skypeUsersList = new List<User>(SkypeInstance.Friends.ToArray());
             skypeUsersList.Add(SkypeInstance.CurrentUser);
             var skypeUsers = new BindingList<User>(skypeUsersList);
+            Logger.Write(string.Format("Found {0} users without a mapping (requestesforcreation.",_requestedForCreation.Count));
             _requestedForCreation.Sort();
             var tfsUsers = new BindingList<string>(_requestedForCreation);
             var presenter = new UserManagementFormPresenter(skypeUsers, tfsUsers) { SelecetdTfsUser = contactId, Mappings = UserMappings };
@@ -607,10 +615,11 @@ namespace TfsCommunity.Collaboration.Skype
         /// <returns></returns>
         public override IContactGroup GetGroup(string groupName)
         {
+            Logger.Write(string.Format("GetGroup was called with groupName {0}.", groupName));
             IContactGroup contactGroup = null;
             // Do not access skype if it is not running
             if ((!IsSkypeRunning()))
-                return contactGroup;
+                return null;
 
             foreach (Group group in SkypeInstance.Groups)
             {

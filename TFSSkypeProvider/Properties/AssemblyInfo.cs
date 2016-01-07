@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("TFS Skype Collaboration Provider")]
+[assembly: AssemblyTitle("TFS Skype Provider")]
 [assembly: AssemblyDescription("Initial idea and development by Nico Orschel")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AIT TeamSystemPro Team ")]
-[assembly: AssemblyProduct("TFSSkypeCollaborationProvider")]
-[assembly: AssemblyCopyright("Copyright ©  2008")]
+[assembly: AssemblyProduct("TFSSkypeProvider")]
+[assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

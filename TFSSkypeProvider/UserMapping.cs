@@ -9,7 +9,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// </summary>
         /// <value>The name of the T fs.</value>
         [XmlAttribute]
-        public string TFsName { get; set; }
+        public string TfsName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skype.

@@ -4,9 +4,9 @@ namespace TfsCommunity.Collaboration.Skype
 {
     public class UserPresenter
     {
-        private readonly SKYPE4COMLib.User _user;
+        private readonly User _user;
 
-        public UserPresenter(SKYPE4COMLib.User user)
+        public UserPresenter(User user)
         {
             _user = user;
         }

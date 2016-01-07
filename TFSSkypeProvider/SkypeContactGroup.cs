@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using Microsoft.TeamFoundation.Collaboration;
 using SKYPE4COMLib;
 
@@ -12,18 +11,18 @@ namespace TfsCommunity.Collaboration.Skype
     {
         #region Implementation of IContactGroup
 
-        private readonly string groupName;
-        private readonly ISkype skypeInstance;
+        private readonly string _groupName;
+        private readonly ISkype _skypeInstance;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SkypeContactGroup"/> class.
         /// </summary>
-        /// <param name="SkypeInstance">The skype instance.</param>
-        /// <param name="GroupName">Name of the group.</param>
-        public SkypeContactGroup(ISkype SkypeInstance, string GroupName)
+        /// <param name="skypeInstance">The skype instance.</param>
+        /// <param name="groupName">Name of the group.</param>
+        public SkypeContactGroup(ISkype skypeInstance, string groupName)
         {
-            groupName = GroupName;
-            skypeInstance = SkypeInstance;
+            _groupName = groupName;
+            _skypeInstance = skypeInstance;
         }
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The name.</value>
         public string Name
         {
-            get { return groupName; }
+            get { return _groupName; }
         }
 
         /// <summary>
@@ -46,14 +45,14 @@ namespace TfsCommunity.Collaboration.Skype
                 ICollection<Contact> contactsCollection = new List<Contact>();
                 UserMappingCollection mappings = new UserMappingCollection();
                 mappings.Load();
-                foreach (IGroup Group in skypeInstance.Groups)
+                foreach (IGroup group in _skypeInstance.Groups)
                 {
-                    if (Group.DisplayName.Equals(groupName))
+                    if (group.DisplayName.Equals(_groupName))
                     {
-                        foreach (IUser skypeUser in Group.Users)
+                        foreach (IUser skypeUser in group.Users)
                         {
                             var mapping = mappings.FindBySkypeName(skypeUser.Handle);
-                            contactsCollection.Add(new SkypeContact(skypeUser, skypeInstance, mapping));
+                            contactsCollection.Add(new SkypeContact(skypeUser, _skypeInstance, mapping));
                         }
                         return contactsCollection;
                     }

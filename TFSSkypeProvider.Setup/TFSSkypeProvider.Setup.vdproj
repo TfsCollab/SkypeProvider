@@ -15,44 +15,56 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_09AD286265FE9A3A16AEFFBB6A2B29DD"
-        "OwnerKey" = "8:_BEFB79598C3868D5C918D5D0188330CF"
+        "MsmKey" = "8:_684A3B6957724C6B9FA790687FD3D568"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1DDFA4C806CA7A3A975BC5F054CA69C4"
-        "OwnerKey" = "8:_C72B54CDE6584455AA3ED7EE3A9235A3"
+        "MsmKey" = "8:_6FF0481D482D4C67A04111FD97A6141C"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BEFB79598C3868D5C918D5D0188330CF"
-        "OwnerKey" = "8:_C72B54CDE6584455AA3ED7EE3A9235A3"
+        "MsmKey" = "8:_9F8104D044A85D0937105C02E7B986FA"
+        "OwnerKey" = "8:_B9294E9CA2AB4ABB9DD4EB732F655FA1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C72B54CDE6584455AA3ED7EE3A9235A3"
+        "MsmKey" = "8:_ACFB2EBBD55A39E8F6F91EBE9D89BDE8"
+        "OwnerKey" = "8:_B9294E9CA2AB4ABB9DD4EB732F655FA1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B9294E9CA2AB4ABB9DD4EB732F655FA1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1DDFA4C806CA7A3A975BC5F054CA69C4"
+        "OwnerKey" = "8:_B9294E9CA2AB4ABB9DD4EB732F655FA1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C72B54CDE6584455AA3ED7EE3A9235A3"
+        "OwnerKey" = "8:_9F8104D044A85D0937105C02E7B986FA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BEFB79598C3868D5C918D5D0188330CF"
+        "OwnerKey" = "8:_684A3B6957724C6B9FA790687FD3D568"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ACFB2EBBD55A39E8F6F91EBE9D89BDE8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -104,7 +116,7 @@
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
-        "Compression" = "3:2"
+        "Compression" = "3:3"
         "SignOutput" = "11:FALSE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
@@ -112,18 +124,13 @@
         "InstallerBootstrapper" = "3:2"
             "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
             {
-            "Enabled" = "11:TRUE"
+            "Enabled" = "11:FALSE"
             "PromptEnabled" = "11:TRUE"
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:http://www.codeplex.com/tfscollab"
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
-                    {
-                    "Name" = "8:.NET Framework 3.5 SP1"
-                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
-                    }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
                     "Name" = "8:Windows Installer 3.1"
@@ -152,7 +159,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "Version" = "8:3.5.30729"
+                "FrameworkVersion" = "8:.NETFramework,Version=v3.5"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -160,10 +167,21 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09AD286265FE9A3A16AEFFBB6A2B29DD"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_684A3B6957724C6B9FA790687FD3D568"
             {
-            "SourcePath" = "8:SKYPE4~1.DLL"
-            "TargetName" = "8:SKYPE4~1.DLL"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Interop.SKYPE4COMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_684A3B6957724C6B9FA790687FD3D568"
+                    {
+                    "Name" = "8:Interop.SKYPE4COMLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Libs\\Interop.SKYPE4COMLib.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C1E2299B491D41E484792455EE28C20B"
             "Condition" = "8:"
@@ -175,19 +193,70 @@
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
-            "Register" = "3:4"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1DDFA4C806CA7A3A975BC5F054CA69C4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FF0481D482D4C67A04111FD97A6141C"
+            {
+            "SourcePath" = "8:..\\Libs\\Skype4COM\\Skype4COM.dll"
+            "TargetName" = "8:Skype4COM.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C1E2299B491D41E484792455EE28C20B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F8104D044A85D0937105C02E7B986FA"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.TeamFoundation.Collaboration, Version=9.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Interop.SKYPE4COMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_1DDFA4C806CA7A3A975BC5F054CA69C4"
+                    "_9F8104D044A85D0937105C02E7B986FA"
+                    {
+                    "Name" = "8:Interop.SKYPE4COMLib.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Interop.SKYPE4COMLib.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C1E2299B491D41E484792455EE28C20B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ACFB2EBBD55A39E8F6F91EBE9D89BDE8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.TeamFoundation.Collaboration, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_ACFB2EBBD55A39E8F6F91EBE9D89BDE8"
                     {
                     "Name" = "8:Microsoft.TeamFoundation.Collaboration.dll"
                     "Attributes" = "3:512"
@@ -211,20 +280,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BEFB79598C3868D5C918D5D0188330CF"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B9294E9CA2AB4ABB9DD4EB732F655FA1"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.SKYPE4COMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SkypeProvider, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BEFB79598C3868D5C918D5D0188330CF"
+                    "_B9294E9CA2AB4ABB9DD4EB732F655FA1"
                     {
-                    "Name" = "8:Interop.SKYPE4COMLib.dll"
+                    "Name" = "8:SkypeProvider.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Interop.SKYPE4COMLib.dll"
+            "SourcePath" = "8:..\\TFSSkypeProvider\\bin\\Release\\SkypeProvider.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C1E2299B491D41E484792455EE28C20B"
@@ -239,7 +308,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -316,7 +385,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C1E2299B491D41E484792455EE28C20B"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder]\\Microsoft Visual Studio 9.0\\Common7\\IDE\\PublicAssemblies\\CollaborationProviders"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\Microsoft Visual Studio 10.0\\Common7\\IDE\\PublicAssemblies\\CollaborationProviders"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -355,7 +424,7 @@
             {
             "Name" = "8:RegistryEntry Powertools"
             "Root" = "2:2"
-            "RegKey" = "8:Software\\Microsoft\\VisualStudio\\9.0\\TeamFoundation\\Power Tools"
+            "RegKey" = "8:Software\\Microsoft\\VisualStudio\\10.0\\TeamFoundation\\Power Tools"
             "Value" = "8:"
             "Property" = "8:REGISTRYVALUE1"
             }
@@ -368,23 +437,24 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Skype Collaboration Provider"
+        "ProductName" = "8:Skype Provider for TFS Power Tools 2010"
         "ProductCode" = "8:{C61A31FD-119F-467E-A913-C1CDB786C2C6}"
-        "PackageCode" = "8:{496594AC-430D-47F8-B084-A8679DA60A3D}"
+        "PackageCode" = "8:{3B100410-35AD-43A2-B222-2484E4166FC3}"
         "UpgradeCode" = "8:{3D045AC6-A485-4B83-9F08-C9E052831B4E}"
+        "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:2.0.0"
         "Manufacturer" = "8:AIT TeamSystemPro"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.codeplex.com/tfscollab"
         "Title" = "8:TFSSkypeProvider"
-        "Subject" = "8:Skype Collaboration Provider for Team Foundation Server Power Tools October 2008 Release"
+        "Subject" = "8:Skype Provider for TFS Power Tools 2010"
         "ARPCONTACT" = "8:Nico Orschel"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:Skype Collaboration Provider for TFS Power Tools Oct. 2008"
+        "ARPCOMMENTS" = "8:Skype Provider for TFS Power Tools 2010"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -888,34 +958,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C72B54CDE6584455AA3ED7EE3A9235A3"
-            {
-            "SourcePath" = "8:..\\TFSSkypeProvider\\obj\\Release\\SkypeProvider.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C1E2299B491D41E484792455EE28C20B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{6B8349A3-3138-40EF-AC78-3A41CE69E2A2}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
         }
     }
 }

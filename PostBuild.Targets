@@ -2,7 +2,7 @@
 <Project DefaultTargets="Compile" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <OutputPath></OutputPath>
-    <VisualStudioCollaborationProvidersPath>$(ProgramFiles)\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\CollaborationProviders</VisualStudioCollaborationProvidersPath>
+    <VisualStudioCollaborationProvidersPath>$(ProgramFiles)\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\CollaborationProviders</VisualStudioCollaborationProvidersPath>
   </PropertyGroup>
   <Target Name="DeployToVisualStudio">
     <!-- Note: We need to copy the generated binary to a special visual studio folder -->

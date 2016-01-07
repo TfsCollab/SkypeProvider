@@ -8,8 +8,8 @@ namespace TfsCommunity.Collaboration.Skype
     /// </summary>
     public class SkypePhoneNumber : PhoneNumber
     {
-        private readonly string phoneNumber = string.Empty;
-        private readonly string phoneType;
+        private readonly string _phoneNumber = string.Empty;
+        private readonly string _phoneType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SkypePhoneNumber"/> class.
@@ -20,18 +20,18 @@ namespace TfsCommunity.Collaboration.Skype
         {
             if (phoneType == PhoneType.Home)
             {
-                phoneNumber = skypeUser.PhoneHome;
-                this.phoneType = HomePhone;
+                _phoneNumber = skypeUser.PhoneHome;
+                _phoneType = HomePhone;
             }
             if (phoneType == PhoneType.Mobile)
             {
-                phoneNumber = skypeUser.PhoneMobile;
-                this.phoneType = MobilePhone;
+                _phoneNumber = skypeUser.PhoneMobile;
+                _phoneType = MobilePhone;
             }
             if (phoneType == PhoneType.Office)
             {
-                phoneNumber = skypeUser.PhoneOffice;
-                this.phoneType = WorkPhone;
+                _phoneNumber = skypeUser.PhoneOffice;
+                _phoneType = WorkPhone;
             }
         }
 
@@ -42,16 +42,13 @@ namespace TfsCommunity.Collaboration.Skype
         /// <value>The number.</value>
         public override string Number
         {
-            get { return phoneNumber; }
+            get { return _phoneNumber; }
         }
 
-        /// <summary>
-        /// Gets the type.
-        /// </summary>
-        /// <value>The type.</value>
-        public override string Type
+        public override string PhoneNumberType
         {
-            get { return phoneType; }
+            get { return _phoneType; }
         }
+
     }
 }
