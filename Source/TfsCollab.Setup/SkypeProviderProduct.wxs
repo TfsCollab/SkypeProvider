@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?define Product = "Skype Collaboration Provider VS2013" ?>
-  <?define ProductFull = "Skype Collaboration Provider VS2013" ?>
+  <?define Product = "Skype Collaboration Provider VS2015" ?>
+  <?define ProductFull = "Skype Collaboration Provider VS2015" ?>
   <?define Manufacturer = "AIT"?>
   <?define ManufacturerFull = "AIT" ?>
-  <?define UpgradeGUID = "21D59878-5B08-45E4-A46F-C050ED05F5CC" ?>
+  <?define UpgradeGUID = "21D59878-5B08-45E4-A46F-C050ED05F5CD" ?>
 
   <Product Id="*" Name="$(var.Product)" Language="1033" Version="!(bind.FileVersion.SkypeProviderDll)" Manufacturer="$(var.ManufacturerFull)" UpgradeCode="$(var.UpgradeGUID)">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
@@ -15,16 +15,16 @@
     <!-- Check for product to be already be installed -->
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 
-    <!-- Check for TFS 2013 Power Tools installtion-->
+    <!-- Check for TFS 2015 Power Tools installtion-->
     <Property Id='POWERTOOLS_IS_INSTALLED' Secure='yes'>
-      <DirectorySearch Id="CheckTeamFoundationCollaborationFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 12.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
+      <DirectorySearch Id="CheckTeamFoundationCollaborationFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 14.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
         <FileSearch Id="CheckTeamFoundationCollaborationFile" Name="Microsoft.TeamFoundation.Collaboration.dll" />
       </DirectorySearch>
-      <DirectorySearch Id="CheckTeamFoundationPowerToolsControlsFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 12.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
+      <DirectorySearch Id="CheckTeamFoundationPowerToolsControlsFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 14.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
         <FileSearch Id="CheckTeamFoundationPowerToolsControlsFile" Name="Microsoft.TeamFoundation.PowerTools.Controls.dll" />
       </DirectorySearch>
     </Property>
-    <Condition Message="TFS 2013 Power Tools is not installed. TFS 2013 Power Tools must be installed to proceed.">POWERTOOLS_IS_INSTALLED</Condition>
+    <Condition Message="TFS 2015 Power Tools is not installed. TFS 2015 Power Tools must be installed to proceed.">POWERTOOLS_IS_INSTALLED</Condition>
 
     <!-- Define custom actions for registering the dll -->
     <CustomAction Id="RegisterSkypeProvider"
@@ -62,6 +62,16 @@
   ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\TeamCollaboration\Skype4COM.dll"'
   Return='ignore'>
     </CustomAction>
+    <CustomAction Id="UnregisterSkypeProvider8"
+      Directory="TEAMCOLLABORATION_PROVIDERS"
+      ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\TeamCollaboration\Skype4COM.dll"'
+      Return='ignore'>
+    </CustomAction>
+    <CustomAction Id="UnregisterSkypeProvider9"
+      Directory="TEAMCOLLABORATION_PROVIDERS"
+      ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\TeamCollaboration\Skype4COM.dll"'
+      Return='ignore'>
+    </CustomAction>
     <CustomAction Id="UnregisterSkypeProvider"
                   Directory="TEAMCOLLABORATION_PROVIDERS"
                   ExeCommand='c:\windows\system32\regsvr32.exe /s /u "[TEAMCOLLABORATION_PROVIDERS]Skype4COM.dll"'
@@ -80,6 +90,8 @@
       <Custom Action="UnregisterSkypeProvider5" Before="UnregisterSkypeProvider6">NOT Installed</Custom>
       <Custom Action="UnregisterSkypeProvider6" Before="UnregisterSkypeProvider7">NOT Installed</Custom>
       <Custom Action="UnregisterSkypeProvider7" Before="COMReferenceCleanup">NOT Installed</Custom>
+      <Custom Action="UnregisterSkypeProvider8" Before="COMReferenceCleanup">NOT Installed</Custom>
+      <Custom Action="UnregisterSkypeProvider9" Before="COMReferenceCleanup">NOT Installed</Custom>
       <Custom Action="COMReferenceCleanup" After="InstallInitialize">NOT Installed</Custom>
       <!--<Custom Action="RegisterSkypeProvider" After="InstallFinalize">NOT Installed</Custom>-->
       <Custom Action="UnregisterSkypeProvider" Before="InstallInitialize">Installed</Custom>
@@ -99,7 +111,7 @@
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Name="Microsoft Visual Studio 12.0" Id="VisualStudio2013">
+        <Directory Name="Microsoft Visual Studio 14.0" Id="VisualStudio2015">
           <Directory Name="Common7" Id="Common7">
             <Directory Name="IDE" Id="Ide">
               <Directory Name="Extensions" Id="Extensions">

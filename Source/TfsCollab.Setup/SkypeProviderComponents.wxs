@@ -13,7 +13,7 @@
         <File Id="SkypeProviderDll" Source='$(var.TfsCollab.SkypeProvider.TargetDir)SkypeProvider.dll' KeyPath='yes' Checksum='yes' Vital='yes' />
       </Component>
       <Component Id="Skype4ComInteropAssembly" Guid="323CBD93-9122-4E97-B338-D5E85692550D">
-        <File Id="Skype4ComInteropDll" Source='$(var.TfsCollab.SkypeProvider.ProjectDir)..\..\Libs\Skype4COM\SKYPE4COMLib.dll' KeyPath='yes' Checksum='yes' Vital='yes' />
+        <File Id="Skype4ComInteropDll" Source='$(var.TfsCollab.SkypeProvider.ProjectDir)..\..\Libs\Skype4COM\Interop.SKYPE4COMLib.dll' KeyPath='yes' Checksum='yes' Vital='yes' />
       </Component>
       <Component Id="Skype4ComAssembly" Guid="40D8CF4B-0AD8-4C2B-95F7-7268631D51CD" >
         <File Id="Skype4ComDll" Source='$(var.TfsCollab.SkypeProvider.ProjectDir)..\..\Libs\Skype4COM\Skype4COM.dll' KeyPath='yes' Checksum='yes' Vital='yes'>

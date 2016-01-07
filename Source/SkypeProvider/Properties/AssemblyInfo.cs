@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Skype Collaboration Provider VS2013")]
-[assembly: AssemblyDescription("Skype Collaboration Provider for TFS 2013 Power Tools")]
+[assembly: AssemblyTitle("Skype Collaboration Provider VS2015")]
+[assembly: AssemblyDescription("Skype Collaboration Provider for TFS 2015 Power Tools")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AIT ALM Team")]
-[assembly: AssemblyProduct("Skype Collaboration Provider for TFS 2013 Power Tools")]
-[assembly: AssemblyCopyright("Copyright ©AIT ALM Team 2013")]
+[assembly: AssemblyProduct("Skype Collaboration Provider for TFS 2015 Power Tools")]
+[assembly: AssemblyCopyright("Copyright ©AIT ALM Team 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 //
 // MRI: Modify Major, Minor and Build for Updates only (Installer will ignore Revision)
-[assembly: AssemblyVersion("4.0.0.0")]
-[assembly: AssemblyFileVersion("4.0.0.1")]
+[assembly: AssemblyVersion("5.0.0.0")]
+[assembly: AssemblyFileVersion("5.0.0.1")]
