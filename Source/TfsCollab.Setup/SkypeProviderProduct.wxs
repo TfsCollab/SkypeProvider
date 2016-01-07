@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?define Product = "Skype Collaboration Provider" ?>
-  <?define ProductFull = "Skype Collaboration Provider" ?>
-  <?define Manufacturer = "AIT TeamSystemPro Team"?>
-  <?define ManufacturerFull = "AIT TeamSystemPro Team" ?>
-  <?define UpgradeGUID = "21D59878-5B08-45E4-A46F-C050ED05F5CA" ?>
+  <?define Product = "Skype Collaboration Provider VS2013" ?>
+  <?define ProductFull = "Skype Collaboration Provider VS2013" ?>
+  <?define Manufacturer = "AIT"?>
+  <?define ManufacturerFull = "AIT" ?>
+  <?define UpgradeGUID = "21D59878-5B08-45E4-A46F-C050ED05F5CC" ?>
 
   <Product Id="*" Name="$(var.Product)" Language="1033" Version="!(bind.FileVersion.SkypeProviderDll)" Manufacturer="$(var.ManufacturerFull)" UpgradeCode="$(var.UpgradeGUID)">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
     <!-- Define the MSI package -->
     <MediaTemplate EmbedCab="yes" />
+
     <!-- Check for product to be already be installed -->
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    <!-- Check for TFS 2012 Power Tools installtion-->
+
+    <!-- Check for TFS 2013 Power Tools installtion-->
     <Property Id='POWERTOOLS_IS_INSTALLED' Secure='yes'>
-      <DirectorySearch Id="CheckTeamFoundationCollaborationFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 11.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
+      <DirectorySearch Id="CheckTeamFoundationCollaborationFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 12.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
         <FileSearch Id="CheckTeamFoundationCollaborationFile" Name="Microsoft.TeamFoundation.Collaboration.dll" />
       </DirectorySearch>
-      <DirectorySearch Id="CheckTeamFoundationPowerToolsControlsFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 11.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
+      <DirectorySearch Id="CheckTeamFoundationPowerToolsControlsFileDir" Path="[ProgramFilesFolder]Microsoft Visual Studio 12.0\Common7\IDE\Extensions\TeamCollaboration" Depth="0">
         <FileSearch Id="CheckTeamFoundationPowerToolsControlsFile" Name="Microsoft.TeamFoundation.PowerTools.Controls.dll" />
       </DirectorySearch>
     </Property>
-    <Condition Message="TFS 2012 Power Tools is not installed. TFS 2012 Power Tools must be installed to proceed.">POWERTOOLS_IS_INSTALLED</Condition>
+    <Condition Message="TFS 2013 Power Tools is not installed. TFS 2013 Power Tools must be installed to proceed.">POWERTOOLS_IS_INSTALLED</Condition>
 
     <!-- Define custom actions for registering the dll -->
     <CustomAction Id="RegisterSkypeProvider"
@@ -40,6 +42,26 @@
           ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files (x86)\Common Files\Skype\Skype4COM.dll"'
           Return='ignore'>
     </CustomAction>
+    <CustomAction Id="UnregisterSkypeProvider4"
+      Directory="TEAMCOLLABORATION_PROVIDERS"
+      ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\TeamCollaboration\Skype4COM.dll"'
+      Return='ignore'>
+    </CustomAction>
+    <CustomAction Id="UnregisterSkypeProvider5"
+  Directory="TEAMCOLLABORATION_PROVIDERS"
+  ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\TeamCollaboration\Skype4COM.dll"'
+  Return='ignore'>
+    </CustomAction>
+    <CustomAction Id="UnregisterSkypeProvider6"
+  Directory="TEAMCOLLABORATION_PROVIDERS"
+  ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\TeamCollaboration\Skype4COM.dll"'
+  Return='ignore'>
+    </CustomAction>
+    <CustomAction Id="UnregisterSkypeProvider7"
+  Directory="TEAMCOLLABORATION_PROVIDERS"
+  ExeCommand='c:\windows\system32\regsvr32.exe /s /u "C:\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\TeamCollaboration\Skype4COM.dll"'
+  Return='ignore'>
+    </CustomAction>
     <CustomAction Id="UnregisterSkypeProvider"
                   Directory="TEAMCOLLABORATION_PROVIDERS"
                   ExeCommand='c:\windows\system32\regsvr32.exe /s /u "[TEAMCOLLABORATION_PROVIDERS]Skype4COM.dll"'
@@ -53,7 +75,11 @@
 
     <InstallExecuteSequence>
       <Custom Action="UnregisterSkypeProvider2" Before="UnregisterSkypeProvider3">NOT Installed</Custom>
-      <Custom Action="UnregisterSkypeProvider3" Before="COMReferenceCleanup">NOT Installed</Custom>
+      <Custom Action="UnregisterSkypeProvider3" Before="UnregisterSkypeProvider4">NOT Installed</Custom>
+      <Custom Action="UnregisterSkypeProvider4" Before="UnregisterSkypeProvider5">NOT Installed</Custom>
+      <Custom Action="UnregisterSkypeProvider5" Before="UnregisterSkypeProvider6">NOT Installed</Custom>
+      <Custom Action="UnregisterSkypeProvider6" Before="UnregisterSkypeProvider7">NOT Installed</Custom>
+      <Custom Action="UnregisterSkypeProvider7" Before="COMReferenceCleanup">NOT Installed</Custom>
       <Custom Action="COMReferenceCleanup" After="InstallInitialize">NOT Installed</Custom>
       <!--<Custom Action="RegisterSkypeProvider" After="InstallFinalize">NOT Installed</Custom>-->
       <Custom Action="UnregisterSkypeProvider" Before="InstallInitialize">Installed</Custom>
@@ -63,7 +89,7 @@
     <WixVariable Id="WixUIBannerBmp" Value="Ressources\BannerTSPTeam.jpg" />
     <WixVariable Id="WixUIDialogBmp" Value="Ressources\Dialog.jpg"/>
     <UIRef Id="WixUI_Minimal"/>
-    
+
     <!-- Defining the features -->
     <Feature Id="F.TfsCollaborationProviders" Title="Skype Collaboration Provider" Level="1">
       <ComponentGroupRef Id="CG.TfsCollaborationProviders" />
@@ -73,7 +99,7 @@
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Name="Microsoft Visual Studio 11.0" Id="VisualStudio2012">
+        <Directory Name="Microsoft Visual Studio 12.0" Id="VisualStudio2013">
           <Directory Name="Common7" Id="Common7">
             <Directory Name="IDE" Id="Ide">
               <Directory Name="Extensions" Id="Extensions">

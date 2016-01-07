@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TfsCollab.SkypeProvider", "SkypeProvider\TfsCollab.SkypeProvider.csproj", "{245FF5A0-3324-4E41-B9B1-3C13C3A4F81B}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "TfsCollab.Setup", "TfsCollab.Setup\TfsCollab.Setup.wixproj", "{35DF9FA6-005B-4018-ADE4-8AD33C6C799F}"

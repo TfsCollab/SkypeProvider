@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace TfsCommunity.Collaboration.Skype
 {
-    [TeamMembersProvider("E5F7B919-7945-4FB5-9933-AEB58870D697", "Skype by AIT TeamSystemPro", true)]
+    [TeamMembersProvider("E5F7B919-7945-4FB5-9933-AEB58870D697", "Skype by AIT ALM Team", true)]
     public class SkypeProvider : ICollaborationUIProviderExtended<ISkype>
     {
         #region Private Fields
